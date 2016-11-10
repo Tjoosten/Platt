@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Logins extends Eloquent
 {
     /**
+     * Specify the database connection.
+     * @var string
+     */
+    protected $connection = 'auth';
+
+    /**
      * Database table.
      *
      * @var string

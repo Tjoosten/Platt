@@ -12,8 +12,7 @@
 	},
 	"require": {
 		"illuminate/database": "5.0.28",
-		"illuminate/events": "5.0.28",
-		"Illuminate/Pagination": "5.0.28"
+		"illuminate/events": "5.0.28"
 	},
 	"autoload": {
 		"classmap": [

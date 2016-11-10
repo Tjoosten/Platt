@@ -45,7 +45,10 @@ class VerifyLogin extends MY_Controller
     public function check_database($password)
     {
         $username = $this->input->post('username');
-        $result = $this->user->login($username, $password);
+        $result = Logins::where('email', $username)
+            ->where('blocked', 0)
+            ->where('password', password_hash($password, PASSWORD_DEFAULT))
+            ->get();
 
         if ($result) {
             $auth = [];

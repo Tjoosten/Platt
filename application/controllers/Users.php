@@ -29,7 +29,7 @@ class Users extends MY_Controller
     /**
      * Middleware controller. 
      */
-    protected function middleware()
+    public function middleware()
     {
         /**
          * Return the list of middlewares you want to be applied,

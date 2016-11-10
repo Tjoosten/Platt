@@ -76,7 +76,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'root',
+	'password' => '',
 	'database' => 'barebone',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -105,8 +105,18 @@ $capsule->addConnection(array(
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
         'prefix' => $db['default']['dbprefix'],
-    )
-);
+    ), 'default');
+
+$capsule->addConnection(array(
+    'driver' => 'mysql',
+    'host' => 'localhost',
+    'database' => 'authencation',
+    'username' => 'root',
+    'password' => '',
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => '',
+), 'auth');
 
 $capsule->setAsGlobal();
 $capsule->bootEloquent();

@@ -2,8 +2,8 @@
 
 /**
  * Class MY_Controller
- * 
- * [MIDDLEWARE]: NAMING CONVENTIONS: 
+ *
+ * [MIDDLEWARE]: NAMING CONVENTIONS:
  * --------------------------------------------------------
  * admin                  => AdminMiddleware
  * Admin                  => AdminMiddleware
@@ -14,12 +14,7 @@
  */
 class MY_Controller extends CI_Controller
 {
-    /**
-     * Middlewares collection array.
-     *
-     * @var array
-     */
-    protected $middlewares = [];
+    protected $middlewares = array();
 
     public function __construct()
     {
@@ -27,52 +22,39 @@ class MY_Controller extends CI_Controller
         $this->_run_middlewares();
     }
 
-
-    /**
-     * register the middleware.
-     *
-     * @return array
-     */
-    public function middleware()
+    protected function middleware()
     {
-        return [];
+        return array();
     }
 
     protected function _run_middlewares()
     {
         $this->load->helper('inflector');
         $middlewares = $this->middleware();
-
         foreach ($middlewares as $middleware) {
-            $middlewareArray = explode('|', str_replace(' ', '', $middleware)); 
-            $middlewareName  = middlewareArray[0];
-            $runMiddleware   = true; 
-
+            $middlewareArray = explode('|', str_replace(' ', '', $middleware));
+            $middlewareName = $middlewareArray[0];
+            $runMiddleware = true;
             if (isset($middlewareArray[1])) {
-                $options = explode(':', $middlewareArray[1]); 
-                $type    = $options[0]; 
-                $methods = explode(',', $options[1]); 
-
+                $options = explode(':', $middlewareArray[1]);
+                $type = $options[0];
+                $methods = explode(',', $options[1]);
                 if ($type == 'except') {
                     if (in_array($this->router->method, $methods)) {
-                        $runMiddleware = false; 
+                        $runMiddleware = false;
                     }
-                } elseif ($type == 'only') {
-                    if (! in_array($this->router->method, $methods)) {
+                } else if ($type == 'only') {
+                    if (!in_array($this->router->method, $methods)) {
                         $runMiddleware = false;
                     }
                 }
             }
-
-            $filename = ucfirst(camelize($middlewareName)) . 'Middleware'; 
-
+            $filename = ucfirst(camelize($middlewareName)) . 'Middleware';
             if ($runMiddleware == true) {
-                if (file_exists(APPATH . 'middlewares/' . $filename . '.php')) {
+                if (file_exists(APPPATH . 'middlewares/' . $filename . '.php')) {
                     require APPPATH . 'middlewares/' . $filename . '.php';
-
-                    $ci     = &get_instance();
+                    $ci = &get_instance();
                     $object = new $filename($this, $ci);
-
                     $object->run();
                     $this->middlewares[$middlewareName] = $object;
                 } else {
@@ -83,7 +65,6 @@ class MY_Controller extends CI_Controller
                     }
                 }
             }
-
         }
     }
 }
