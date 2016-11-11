@@ -12,8 +12,17 @@ class Feedback extends CI_Controller
     {
         parent::__construct();
         $this->load->helper(['url']);
-        $this->load->library(['session', 'form_validation']);
-        $this->load->model('feedbask');
+        $this->load->library(['session', 'blade', 'form_validation']);
+        $this->load->model('Tickets', '', true);
+    }
+
+    /**
+     * Get All the tickets for the platform.
+     */
+    public function index()
+    {
+        $data['all'] = Tickets::with('labels', 'platform')->get();
+        $this->blade->render('', $data);
     }
 
     /**
@@ -37,8 +46,16 @@ class Feedback extends CI_Controller
 
     }
 
+    /**
+     * [METHOD]: Destroy a feedback out off the system.
+     */
     public function destroy()
     {
+        $id = $this->uri->segment(3);
 
+        if (Tickets::destroy($id)) {
+            $this->session->set_flashdata('', '');
+            $this->session->set_flashdata('', '');
+        }
     }
 }
