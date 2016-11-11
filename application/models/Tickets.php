@@ -22,6 +22,8 @@ class Tickets extends Eloquent
 
     /**
      * Get the platform information through a relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function platform()
     {
@@ -30,9 +32,11 @@ class Tickets extends Eloquent
 
     /**
      * Get the status information through a relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function labels()
     {
-        return $this->belongsTo('Labels');
+        return $this->belongsToMany('Labels');
     }
 }

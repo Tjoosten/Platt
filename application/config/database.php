@@ -1,5 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+$capsule = new \Illuminate\Database\Capsule\Manager();
+
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS
@@ -76,7 +78,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => '',
+	'password' => 'root',
 	'database' => 'barebone',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -95,7 +97,6 @@ $db['default'] = array(
 );
 
 // Eloquent part
-$capsule = new \Illuminate\Database\Capsule\Manager();
 $capsule->addConnection(array(
         'driver' => in_array($db['default']['dbdriver'], array('mysql', 'mysqli')) ? 'mysql' : $db['default']['dbdriver'],
         'host' => $db['default']['hostname'],
@@ -110,9 +111,9 @@ $capsule->addConnection(array(
 $capsule->addConnection(array(
     'driver' => 'mysql',
     'host' => 'localhost',
-    'database' => 'authencation',
+    'database' => 'activisme_credentials',
     'username' => 'root',
-    'password' => '',
+    'password' => 'root',
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => '',
