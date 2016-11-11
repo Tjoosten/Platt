@@ -91,8 +91,8 @@ class Feedback extends CI_Controller
         $id = $this->uri->segment(3);
 
         if (Tickets::destroy($id)) {
-            $this->session->set_flashdata('', '');
-            $this->session->set_flashdata('', '');
+            $this->session->set_flashdata('class', 'alert alert-success');
+            $this->session->set_flashdata('message', '');
         }
     }
 
