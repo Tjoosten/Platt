@@ -25,6 +25,24 @@ class Account extends MY_Controller
     }
 
     /**
+     * Middleware controller.
+     *
+     * @return array
+     */
+    public function middleware()
+    {
+        /**
+         * Return the list of middlewares you want to be applied,
+         * Here is list of some valid options
+         *
+         * loggged_in                    // As used below, simplest, will be applied to all
+         * someother|except:index,list   // This will be only applied to posts()
+         * yet_another_one|only:index    // This will be only applied to index()
+         */
+        return ['logged_in'];
+    }
+
+    /**
      * Get the profile view for the logged in user.
      *
      * @return blade view.
@@ -42,6 +60,9 @@ class Account extends MY_Controller
 
     }
 
+    /**
+     * Update the
+     */
     public function updateInfo()
     {
 
