@@ -12,12 +12,14 @@
             </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-            @if($this->Session)
-                <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav">
+                @if($this->Session)
                     <li><a href="{{ base_url('users') }}">User management</a></li>
                     <li><a href="{{ base_url() }}">Feedback</a></li>
-                </ul>
-            @endif
+                @else
+                    <li><a href="">Report a problem.</a></li>
+                @endif
+            </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 @if($this->Session)
