@@ -28,6 +28,14 @@
                             Iedereen alvast bedankt en welkom op mijn pagina !
                         </p>
 
+                        <hr>
+
+                        {{-- Signature form --}}
+                        <form action="" method="" class="">
+
+                        </form>
+                        {{-- /Signature form --}}
+
                     </div>
 
                     <div class="col-md-4">
