@@ -43,7 +43,17 @@
                                     <select class="form-control" name="" id="">
                                         <option value="">-- Dag --</option>
 
-                                        {{-- TODO: Implement for loop for the days.  --}}
+                                        @for ($int = 1; $int < 32; $int++)
+                                            @if ($int < 10)
+                                                <option value="0{{ $int }}">
+                                                    0{{ $int }}
+                                                </option>
+                                            @else
+                                                <option value="{{ $int }}">
+                                                    {{ $int }}
+                                                </option>
+                                            @endif
+                                        @endfor
                                     </select>
                                 </div>
 
@@ -69,7 +79,11 @@
                                     <select class="form-control" name="" id="">
                                         <option value=""> -- Jaar --</option>
 
-                                        {{-- TODO: Implement for loop for the years.  I need 100 years.--}}
+                                        @for ($jaar = 1916; $jaar < 2017; $jaar++)
+                                            <option value="{{ $jaar }}">
+                                                {{ $jaar }}
+                                            </option>
+                                        @endfor
                                     </select>
                                 </div>
 
@@ -93,7 +107,7 @@
                             <div class="form-group">
                                 <div class="col-sm-9">
                                     <button type="submit" class="btn btn-success">Sign!</button>
-                                    <button type="reset" class="btn btn-danger">Danger</button>
+                                    <button type="reset" class="btn btn-danger">Reset</button>
                                 </div>
                             </div>
                         </form>
