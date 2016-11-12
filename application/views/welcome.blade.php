@@ -11,7 +11,7 @@
         <div class="col-sm-12">
             <div style="border-radius:0px; border: 0px;" class="panel panel-default">
                 <div class="panel-body">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
 
                         <h2>Beste vrienden sympathisanten,</h2>
 
@@ -28,24 +28,91 @@
                             Iedereen alvast bedankt en welkom op mijn pagina !
                         </p>
 
-                    </div>
+                        <hr>
 
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Petities:
+                        {{-- Signature form --}}
+                        <form action="" method="" class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="name" placeholder="Voor en Achternaam">
+                                </div>
                             </div>
 
-                            <div class="list-group">
-                                <a href="http://www.begroting.idevelopment.be" class="list-group-item">
-                                    <span class="glyphicon glyphicon-asterisk"></span> Help de regering.
-                                </a>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <select class="form-control" name="" id="">
+                                        <option value="">-- Dag --</option>
 
-                                <a href="https://www.manifesto.idevelopment.be" class="list-group-item">
-                                    <span class="glyphicon glyphicon-asterisk"></span> Invalide petitie.
-                                </a>
+                                        @for ($int = 1; $int < 32; $int++)
+                                            @if ($int < 10)
+                                                <option value="0{{ $int }}">
+                                                    0{{ $int }}
+                                                </option>
+                                            @else
+                                                <option value="{{ $int }}">
+                                                    {{ $int }}
+                                                </option>
+                                            @endif
+                                        @endfor
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="" id="">
+                                        <option value="">-- Maand --</option>
+                                        <option value="01">Januari</option>
+                                        <option value="02">Februari</option>
+                                        <option value="03">Maart</option>
+                                        <option value="04">April</option>
+                                        <option value="05">Mei</option>
+                                        <option value="06">Juni</option>
+                                        <option value="07">Juli</option>
+                                        <option value="08">Augustus</option>
+                                        <option value="09">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="" id="">
+                                        <option value=""> -- Jaar --</option>
+
+                                        @for ($jaar = 1916; $jaar < 2017; $jaar++)
+                                            <option value="{{ $jaar }}">
+                                                {{ $jaar }}
+                                            </option>
+                                        @endfor
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <span class="help-block"><i>(Geboortedatum)</i></span>
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Uw Email adres" name="">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="Woonplaats">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <button type="submit" class="btn btn-success">Sign!</button>
+                                    <button type="reset" class="btn btn-danger">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                        {{-- /Signature form --}}
+
                     </div>
                 </div>
             </div>
