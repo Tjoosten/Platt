@@ -42,18 +42,34 @@
                                 <div class="col-sm-2">
                                     <select class="form-control" name="" id="">
                                         <option value="">-- Dag --</option>
+
+                                        {{-- TODO: Implement for loop for the days.  --}}
                                     </select>
                                 </div>
 
                                 <div class="col-sm-3">
                                     <select class="form-control" name="" id="">
                                         <option value="">-- Maand --</option>
+                                        <option value="01">Januari</option>
+                                        <option value="02">Februari</option>
+                                        <option value="03">Maart</option>
+                                        <option value="04">April</option>
+                                        <option value="05">Mei</option>
+                                        <option value="06">Juni</option>
+                                        <option value="07">Juli</option>
+                                        <option value="08">Augustus</option>
+                                        <option value="09">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
                                     </select>
                                 </div>
 
                                 <div class="col-sm-3">
                                     <select class="form-control" name="" id="">
                                         <option value=""> -- Jaar --</option>
+
+                                        {{-- TODO: Implement for loop for the years.  I need 100 years.--}}
                                     </select>
                                 </div>
 
