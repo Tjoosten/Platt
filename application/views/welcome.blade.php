@@ -11,7 +11,7 @@
         <div class="col-sm-12">
             <div style="border-radius:0px; border: 0px;" class="panel panel-default">
                 <div class="panel-body">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
 
                         <h2>Beste vrienden sympathisanten,</h2>
 
@@ -31,33 +31,58 @@
                         <hr>
 
                         {{-- Signature form --}}
-                        <form action="" method="" class="">
+                        <form action="" method="" class="form-horizontal">
                             <div class="form-group">
-                                <div class="col-sm-4">
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="name" placeholder="Voor en Achternaam">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <select class="form-control" name="" id="">
+                                        <option value="">-- Dag --</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="" id="">
+                                        <option value="">-- Maand --</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="" id="">
+                                        <option value=""> -- Jaar --</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <span class="help-block"><i>(Geboortedatum)</i></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Uw Email adres" name="">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-8">
+                                    <input type="text" name="" class="form-control" placeholder="Woonplaats">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <button type="submit" class="btn btn-success">Sign!</button>
+                                    <button type="reset" class="btn btn-danger">Danger</button>
                                 </div>
                             </div>
                         </form>
                         {{-- /Signature form --}}
 
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Petities:
-                            </div>
-
-                            <div class="list-group">
-                                <a href="http://www.begroting.idevelopment.be" class="list-group-item">
-                                    <span class="glyphicon glyphicon-asterisk"></span> Help de regering.
-                                </a>
-
-                                <a href="https://www.manifesto.idevelopment.be" class="list-group-item">
-                                    <span class="glyphicon glyphicon-asterisk"></span> Invalide petitie.
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
