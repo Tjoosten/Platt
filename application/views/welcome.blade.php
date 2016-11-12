@@ -32,7 +32,11 @@
 
                         {{-- Signature form --}}
                         <form action="" method="" class="">
-
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="name" placeholder="Voor en Achternaam">
+                                </div>
+                            </div>
                         </form>
                         {{-- /Signature form --}}
 
