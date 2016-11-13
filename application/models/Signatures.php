@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
+/**
+ * Class Signatures
+ */
 class Signatures extends Eloquent
 {
     /**
@@ -9,14 +12,19 @@ class Signatures extends Eloquent
      *
      * @var string
      */
-    protected $table = 'Signatures';
+    protected $table = 'signatures';
 
     /**
      * Mass-assign fields
      *
      * @var array
      */
-    protected $fillable = [''];
+    protected $fillable = ['name', 'city', 'birth_date', 'email'];
 
-
+    /**
+     * Disable timestamps.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 }
