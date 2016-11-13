@@ -1,5 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+// TODO: Set 3th connection for the tickets.
+
+/*
+|
+| TODO: Ducment the database connections.
+|
+*/
+
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS
