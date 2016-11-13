@@ -13,6 +13,7 @@
                 <div class="panel-body">
                     <div class="col-md-12">
 
+
                         <h2>Beste vrienden sympathisanten,</h2>
 
                         <p>
@@ -31,16 +32,16 @@
                         <hr>
 
                         {{-- Signature form --}}
-                        <form action="" method="" class="form-horizontal">
+                        <form id="signature" action="" method="" class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="name" placeholder="Voor en Achternaam">
+                                    <input type="text" v-model="signature.name" class="form-control" name="name" placeholder="Voor en Achternaam">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-sm-2">
-                                    <select class="form-control" name="" id="">
+                                    <select class="form-control" v-model="signature.day" name="" id="">
                                         <option value="">-- Dag --</option>
 
                                         @for ($int = 1; $int < 32; $int++)
@@ -58,7 +59,7 @@
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <select class="form-control" name="" id="">
+                                    <select class="form-control" v-model="signature.month" name="" id="">
                                         <option value="">-- Maand --</option>
                                         <option value="01">Januari</option>
                                         <option value="02">Februari</option>
@@ -76,7 +77,7 @@
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <select class="form-control" name="" id="">
+                                    <select class="form-control" v-model="signature.year" name="" id="">
                                         <option value=""> -- Jaar --</option>
 
                                         @for ($jaar = 1916; $jaar < 2017; $jaar++)
@@ -94,19 +95,19 @@
 
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Uw Email adres" name="">
+                                    <input type="text" v-model="signature.email" class="form-control" placeholder="Uw Email adres" name="">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="text" name="" class="form-control" placeholder="Woonplaats">
+                                    <input type="text" name="" v-model="signature.city" class="form-control" placeholder="Woonplaats">
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" v-if="! submitted">
                                 <div class="col-sm-9">
-                                    <button type="submit" class="btn btn-success">Sign!</button>
+                                    <button type="submit" v-attr="disabled: errors" class="btn btn-success">Sign!</button>
                                     <button type="reset" class="btn btn-danger">Reset</button>
                                 </div>
                             </div>
