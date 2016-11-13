@@ -10,3 +10,6 @@ $config['back_image']   = 'http://placehold.it/350x150';
 // Meta data
 $config['description']  = '';
 $config['author']       = '';
+
+// Signature count
+$config['sign_count']   = '100.000';
