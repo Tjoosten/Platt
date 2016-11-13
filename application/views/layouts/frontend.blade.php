@@ -34,7 +34,9 @@
 		@include('layouts/partials/navbar')
 
 		<div class="container">
+			@include('layouts/partials/head')
 			@yield('content')
+			@include('layouts/partials/footer')
 		</div>"
 
 		{{-- Javascript --}}

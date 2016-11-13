@@ -1,12 +1,6 @@
 @layout('layouts/frontend')
 
 @section('content')
-    <div class="row">
-        <div class="col-sm-12">
-            <img src="{{ $this->config->item('front_image') }}" style="height:400px; width:100%; border-top-right-radius: 6px; border-top-left-radius: 6px;" alt="Alternate Text">
-        </div>
-    </div>
-
     <div style="margin-bottom: -22px;" class="row">
         <div class="col-sm-12">
             <div style="border-radius:0px; border: 0px;" class="panel panel-default">
@@ -128,33 +122,4 @@
             </div>
         </div>
     </div>
-    <footer class="footer-bs">
-        <div class="row">
-            <div class="col-md-10 footer-brand animated fadeInLeft">
-                <h2>Over mezelf.</h2>
-
-                <p>
-                    Zo hier ben je dan
-                    Mijn naam is Tom Manhaeghe
-                    Ik ben als persoon een simpele werkmens die heel wat harde werkjaren mooi mijn werk deed
-                    Door een zwaar werkongeval werd me heel wat dingen onmogelijk gemaakt.
-                    Ik ben begonnen met activisme door de vele pulsen die ik kreeg over de oneerlijke behandeling van mensen en kinderen !
-                    Ik ben dus iemand die hard op kom voor mensen rechten en een rechtvaardig leven !
-                    De maatschappij word vele keren verzuurd door dat men mensen boven elkaar gaat klasseren.
-                    Ik wil dat onze kinderen en kleinkinderen toch opgroeien in een Multi culturele eerlijke samenleving,
-                    Waar de mensen elkander helpen en niet elkander haten.
-                    Mensen moeten hun ogen open doen voor de druk ze zal sluiten.
-                </p>
-
-                <p>© 2016 Tom Manhaeghe.</p>
-            </div>
-            <div class="col-md-2 footer-social animated fadeInDown">
-                <h4>Contact</h4>
-                <ul>
-                    <li><a href="https://www.facebook.com/ActivismeTomManhaeghe/">Facebook</a></li>
-                    <li><a href="mailto:petities@homeplace.be">Email</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
 @endsection
