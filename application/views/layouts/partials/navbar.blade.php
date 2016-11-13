@@ -18,6 +18,7 @@
                     <li><a href="{{ base_url() }}">Feedback</a></li>
                 @else
                     <li><a href="">Report a problem.</a></li>
+                    <li><a href="{{ base_url('disclaimer') }}">Disclaimer</a></li>
                 @endif
             </ul>
 
