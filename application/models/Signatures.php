@@ -12,7 +12,7 @@ class Signatures extends Eloquent
      *
      * @var string
      */
-    protected $table = 'Signatures';
+    protected $table = 'signatures';
 
     /**
      * Mass-assign fields

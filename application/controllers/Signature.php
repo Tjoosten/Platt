@@ -40,7 +40,7 @@ class Signature extends MY_Controller
      */
     public function index()
     {
-        $this->blade->render('', $this->pagination());
+        // $this->blade->render('', $this->pagination());
     }
 
     /**
@@ -54,16 +54,18 @@ class Signature extends MY_Controller
         // -------
 
         // Birth day calculation.
-        $day   = $this->input->get('day');
-        $month = $this->input->get('month');
-        $year  = $this->input->get('year');
+        $day   = $this->input->post('day');
+        $month = $this->input->post('month');
+        $year  = $this->input->post('year');
 
-        $input['name']          = $this->input->get('name');
-        $input['email']         = $this->input->get('email');
-        $input['city']          = $this->input->get('city');
+        $input['name']          = $this->input->post('name');
+        $input['email']         = $this->input->post('email');
+        $input['city']          = $this->input->post('city');
         $input['birth_date']    = $day . '/' . $month . '/' . $year;
 
-        if (Signatures::destroy($input)) {
+        // var_dump($input);
+
+        if (Signatures::create($input)) {
             $this->session->set_flashdata('class', 'alert alert-success');
             $this->session->set_flashdata('message', 'The signature has been inserted');
         }

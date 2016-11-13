@@ -12,7 +12,7 @@
             <div style="border-radius:0px; border: 0px;" class="panel panel-default">
                 <div class="panel-body">
                     <div class="col-md-12">
-                        @elseif(isset($_SESSION['class']) && isset($_SESSION['message']))
+                        @if(isset($_SESSION['class']) && isset($_SESSION['message']))
                             <div class="col-sm-12">
                                 <div class="{{ $_SESSION['class'] }}">
                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -39,7 +39,7 @@
                         <hr>
 
                         {{-- Signature form --}}
-                        <form id="signature" action="" method="" class="form-horizontal">
+                        <form id="signature" action="{{ base_url('signature/insert') }}" method="POST" class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <input type="text" v-model="signature.name" class="form-control" name="name" placeholder="Voor en Achternaam">
@@ -48,7 +48,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-2">
-                                    <select class="form-control" v-model="signature.day" name="" id="">
+                                    <select class="form-control" v-model="signature.day" name="day" id="">
                                         <option value="">-- Dag --</option>
 
                                         @for ($int = 1; $int < 32; $int++)
@@ -66,7 +66,7 @@
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <select class="form-control" v-model="signature.month" name="" id="">
+                                    <select class="form-control" v-model="signature.month" name="month" id="">
                                         <option value="">-- Maand --</option>
                                         <option value="01">Januari</option>
                                         <option value="02">Februari</option>
@@ -84,7 +84,7 @@
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <select class="form-control" v-model="signature.year" name="" id="">
+                                    <select class="form-control" v-model="signature.year" name="year" id="">
                                         <option value=""> -- Jaar --</option>
 
                                         @for ($jaar = 1916; $jaar < 2017; $jaar++)
@@ -102,13 +102,13 @@
 
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="text" v-model="signature.email" class="form-control" placeholder="Uw Email adres" name="">
+                                    <input type="text" v-model="signature.email" class="form-control" placeholder="Uw Email adres" name="email">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-sm-8">
-                                    <input type="text" name="" v-model="signature.city" class="form-control" placeholder="Woonplaats">
+                                    <input type="text" name="city" v-model="signature.city" class="form-control" placeholder="Woonplaats">
                                 </div>
                             </div>
 
