@@ -69,6 +69,8 @@ class Signature extends MY_Controller
             $this->session->set_flashdata('class', 'alert alert-success');
             $this->session->set_flashdata('message', 'The signature has been inserted');
         }
+
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     /**

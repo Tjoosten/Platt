@@ -13,11 +13,9 @@
                 <div class="panel-body">
                     <div class="col-md-12">
                         @if(isset($_SESSION['class']) && isset($_SESSION['message']))
-                            <div class="col-sm-12">
-                                <div class="{{ $_SESSION['class'] }}">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                    {{ $_SESSION['message'] }}
-                                </div>
+                            <div class="{{ $_SESSION['class'] }}">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                {{ $_SESSION['message'] }}
                             </div>
                         @endif
 
