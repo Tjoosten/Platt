@@ -18,6 +18,8 @@ class Signature extends MY_Controller
 
     /**
      * Insert a signature.
+     *
+     * @return redirct
      */
     public function insert()
     {
@@ -26,9 +28,16 @@ class Signature extends MY_Controller
 
     /**
      * Destroy a invalid signature.
+     *
+     * @return redirect
      */
     public function destroy()
     {
+        $sid = $this->uri->segment(3);
 
+        if (Signatures::destroy($sid)) {
+            $this->session->set_flash('class', '');
+            $this->session->set_flash('message', '');
+        }
     }
 }
