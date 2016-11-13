@@ -15,6 +15,7 @@ class Welcome extends MY_Controller
 		parent::__construct();
         $this->load->library(['blade', 'session']);
         $this->load->helper(['url']);
+        $this->load->model('Signatures', '', true);
         $this->lang->load(['welcome']);
 
         $this->Session = $this->session->userdata('logged_in');
@@ -22,6 +23,7 @@ class Welcome extends MY_Controller
 
 	public function index() 
 	{
-		$this->blade->render('welcome');
+        $data['signatures'] = Signatures::count();
+		$this->blade->render('welcome', $data);
 	}
 }

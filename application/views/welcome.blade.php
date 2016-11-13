@@ -19,6 +19,10 @@
                             </div>
                         @endif
 
+                        <div class="pull-right">
+                            {{ $signatures }} / <strong>{{ $this->config->item('sign_count') }}</strong> Handtekeningen.
+                        </div>
+
                         <h2>Beste vrienden sympathisanten,</h2>
 
                         <p>
