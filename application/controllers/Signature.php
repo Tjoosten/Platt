@@ -40,7 +40,7 @@ class Signature extends MY_Controller
      */
     public function index()
     {
-        // $this->blade->render('', $this->pagination());
+        $this->blade->render('signatures/index', $this->pagination());
     }
 
     /**
