@@ -33,6 +33,36 @@
                             There are no signatures found in the system.
                         </div> 
                     @else
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name:</th>
+                                    <th>Email:</th>
+                                    <th>Birth date:</th>
+                                    <th>Birth place:</th>
+                                    <th></th> {{-- Functions --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($results as $result)
+                                    <tr>
+                                        <td><code>#{{ $result->id }}</code></td>
+                                        <td>{{ $result->name }}</td>
+                                        <td>{{ $result->email }}</td>
+                                        <td>{{ $result->birth_date }}</td>
+                                        <td>{{ $result->city }}</td>
+
+                                        {{-- Functions --}}
+                                        <td>
+                                            <a href="" class="label label-warning">Edit</a>
+                                            <a href="" class="label label-danger">Delete</a>
+                                        </td>
+                                        {{-- /Functions --}}
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     @endif
                 </div>
             </div>
