@@ -40,7 +40,8 @@ class Signature extends MY_Controller
      */
     public function index()
     {
-        // $this->blade->render('', $this->pagination());
+        $data['signatures'] = Signatures::count();
+        $this->blade->render('signatures/index', $data);
     }
 
     /**
@@ -88,15 +89,5 @@ class Signature extends MY_Controller
         }
 
         redirect('/');
-    }
-
-    /**
-     * Pagination for the signatures output.
-     *
-     * @return mixed
-     */
-    protected function pagination()
-    {
-
     }
 }
