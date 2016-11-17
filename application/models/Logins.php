@@ -11,7 +11,7 @@ class Logins extends Eloquent
      * Specify the database connection.
      * @var string
      */
-    protected $connection = 'auth';
+    // protected $connection = 'auth';
 
     /**
      * Database table.

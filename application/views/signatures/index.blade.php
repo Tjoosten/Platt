@@ -21,6 +21,9 @@
                 {{-- /Search form --}}
 
                 {{-- Functions --}}
+                    <div style="margin-bottom: 15px;" class="pull-right">
+                        <a class="btn btn-success">Add signature.</a>
+                    </div>
                 {{-- /Functions -- --}}
             @endif
         </div>
