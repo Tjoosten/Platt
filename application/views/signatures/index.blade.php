@@ -12,7 +12,7 @@
                 <div class="panel-heading">
                     Handtekeningen:
                    <div class="pull-right">
-                       meh
+                       {{ $signatures }} / <strong>{{ $this->config->item('sign_count') }}</strong> Handtekeningen.
                    </div>
                 </div>
             </div>
