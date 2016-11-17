@@ -129,6 +129,6 @@ class Signature extends MY_Controller
             $this->session->set_flashdata('message', 'The signature has been deleted.');
         }
 
-        redirect('signature');
+        redirect($_SERVER['HTTP_REFERER']);
     }
 }
