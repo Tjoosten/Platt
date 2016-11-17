@@ -56,7 +56,7 @@
                                         {{-- Functions --}}
                                         <td>
                                             <a href="" class="label label-warning">Edit</a>
-                                            <a href="" class="label label-danger">Delete</a>
+                                            <a href="{{ base_url('signature/destroy/' . $result->id) }}" class="label label-danger">Delete</a>
                                         </td>
                                         {{-- /Functions --}}
                                     </tr>
