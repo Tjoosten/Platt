@@ -26,7 +26,20 @@
                        {{ $signatures }} / <strong>{{ $this->config->item('sign_count') }}</strong> Handtekeningen.
                    </div>
                 </div>
+
+                <div class="panel-body">
+                    @if (count($results) == 0)
+                        <div class="alert alert-info">
+                            There are no signatures found in the system.
+                        </div> 
+                    @else
+                    @endif
+                </div>
             </div>
+
+            {{-- pagination --}}
+                {{ $links }}
+            {{-- /pagination --}}
         </div>
     </div>
 @endsection

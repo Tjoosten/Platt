@@ -18,7 +18,7 @@ class Signature extends MY_Controller
         parent::__construct();
         $this->load->helper(['url']);
         $this->load->model('signatures', '', true);
-        $this->load->library(['session', 'blade', 'form_validation']);
+        $this->load->library(['pagination', 'session', 'blade', 'form_validation']);
 
         $this->Session = $this->session->userdata('logged_in');
     }
