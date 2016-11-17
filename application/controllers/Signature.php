@@ -40,10 +40,24 @@ class Signature extends MY_Controller
      */
     public function search() 
     {
-        // TODO: Set pagination and query. 
-        // TODO: Connect the controller to the form. 
-        
-        $this->blade->render('', $data):
+        $term = $this->input->post('term');
+        $query = Signatures::where('column', 'LIKE', "%$term%");
+
+        $config['base_url']    = base_url('signature/index/'); 
+        $config['total_rows']  = count($query->get());
+        $config['per_page']    = 25;
+        $config['uri_segment'] = 3;
+
+        $choice = $config['total_rows'] / $config['per_page'];
+        $config['num_links'] = round($choice);
+
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+        $data['results'] = $query->skip($page)->take($config['per_page'])->get(); 
+        $data['links']   = $this->pagination->create_links(); 
+
+        $this->blade->render('signatures/index', $data);
     }
 
     /**
@@ -53,7 +67,21 @@ class Signature extends MY_Controller
      */
     public function index()
     {
-        $data['signatures'] = Signatures::count();
+        $config['base_url']    = base_url('/signature/index/');
+        $config['total_rows']  = count(Signatures::all());
+        $config['per_page']    = 25;
+        $config['uri_segment'] = 3;
+
+        $choice = $config["total_rows"] / $config["per_page"];
+        $config['num_links'] = round($choice);
+
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+        $data['results']    = Signatures::skip($page)->take($config['per_page'])->get();
+        $data['links']      = $this->pagination->create_links(); 
+        $data['signatures'] = Signatures::count(); 
+
         $this->blade->render('signatures/index', $data);
     }
 
