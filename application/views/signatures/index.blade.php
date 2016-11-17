@@ -4,7 +4,18 @@
     <div class="row">
         <div class="col-md-12">
             {{-- Search form --}}
+                <div style="margin-bottom: 15px;" class="pull-left">
+                    <form method="POST" action="" class="form-inline"> 
+                        <input class="form-control" placeholder="Search term" name="term" />
+                        <button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-search"></span> Zoek
+                        </button>
+                    </form>   
+                </div>
             {{-- /Search form --}}
+
+            {{-- Functions --}}
+            {{-- /Functions -- --}}
         </div>
 
         <div class="col-sm-12">

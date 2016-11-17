@@ -34,6 +34,19 @@ class Signature extends MY_Controller
     }
 
     /**
+     * [METHOD]: Search for a specific term.
+     * 
+     * @return blade view
+     */
+    public function search() 
+    {
+        // TODO: Set pagination and query. 
+        // TODO: Connect the controller to the form. 
+        
+        $this->blade->render('', $data):
+    }
+
+    /**
      * Backend index for the signatures.
      *
      * @return blade view
