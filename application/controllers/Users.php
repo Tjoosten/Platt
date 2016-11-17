@@ -27,7 +27,9 @@ class Users extends MY_Controller
     }
 
     /**
-     * Middleware controller. 
+     * Middleware controller.
+     *
+     * @return array
      */
     public function middleware()
     {
