@@ -66,6 +66,9 @@ class Feedback extends CI_Controller
         redirect($_SERVER['HTTP_REFERER'], 'back');
     }
 
+    /**
+     *
+     */
     public function show()
     {
         $this->blade->render('', $data);
@@ -82,14 +85,18 @@ class Feedback extends CI_Controller
 
     /**
      * [METHOD]: Destroy a feedback out off the system.
+     *
+     * @return redirect
      */
     public function destroy()
     {
         $id = $this->uri->segment(3);
 
         if (Tickets::destroy($id)) {
-            $this->session->set_flashdata('', '');
-            $this->session->set_flashdata('', '');
+            $this->session->set_flashdata('class', '');
+            $this->session->set_flashdata('message', '');
         }
+
+        redirect($_SERVER['HTTP_REFERER']);
     }
 }
