@@ -15,7 +15,11 @@
             <ul class="nav navbar-nav">
                 @if($this->Session)
                     <li><a href="{{ base_url('users') }}">User management</a></li>
-                    <li><a href="{{ base_url() }}">Feedback</a></li>
+                    <li>
+                        <a href="{{ base_url() }}">
+                            Feedback <span class="label label-class">{{ Tickets::count() }}</span>
+                        </a>
+                    </li>
                 @else
                     <li><a href="#" data-toggle="modal" data-target="#newTicket">Report a problem.</a></li>
                     <li><a href="{{ base_url('disclaimer') }}">Disclaimer</a></li>
