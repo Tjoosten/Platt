@@ -6,6 +6,13 @@
 class Feedback extends CI_Controller
 {
     /**
+     * Session data collection. 
+     *
+     * @var array
+     */ 
+    public $Session = []; 
+
+    /**
      * Feedback constructor.
      */
     public function __construct()
@@ -14,6 +21,8 @@ class Feedback extends CI_Controller
         $this->load->helper(['url']);
         $this->load->library(['session', 'blade', 'form_validation']);
         $this->load->model('Tickets', '', true);
+
+        $this->Session = $this->session->userdata('logged_in');
     }
 
     /**
@@ -21,7 +30,7 @@ class Feedback extends CI_Controller
      */
     public function index()
     {
-        $data['all'] = Tickets::with('labels', 'platform')->get();
+        $data['tickets'] = Tickets::with('labels', 'platform')->get();
         $this->blade->render('tickets/index', $data);
     }
 
@@ -67,15 +76,23 @@ class Feedback extends CI_Controller
     }
 
     /**
+     * [METHOD]: See the specific ticket. 
      *
+     *
+     * @return view.
      */
     public function show()
     {
-        $this->blade->render('', $data);
+        $id = $this->uri->segment(3);
+
+        $data['ticket'] = Tickets::with('labels', 'application')->find($id);
+        $this->blade->render('tickets/show', $data);
     }
 
     /**
+     * [METHOD]: github hook. To publish tickets to github. 
      *
+     * @return redirect
      */
     public function githubHook() 
     {

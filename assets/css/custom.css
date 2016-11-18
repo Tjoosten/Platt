@@ -12,6 +12,11 @@ body {
     margin-top: 75px;
 }
 
+.panel-functions {
+    margin-top: 10px; 
+    margin-bottom: 15px;
+}
+
 .footer-bs {
     border-top: 5px solid #EE0000;
     background-color: #3c3d41;
