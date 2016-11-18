@@ -22,7 +22,7 @@ class Feedback extends CI_Controller
     public function index()
     {
         $data['all'] = Tickets::with('labels', 'platform')->get();
-        $this->blade->render('', $data);
+        $this->blade->render('tickets/index', $data);
     }
 
     /**
@@ -70,6 +70,15 @@ class Feedback extends CI_Controller
     {
         $this->blade->render('', $data);
     }
+
+    /**
+     *
+     */
+    public function githubHook() 
+    {
+
+    }
+
 
     /**
      * [METHOD]: Destroy a feedback out off the system.
