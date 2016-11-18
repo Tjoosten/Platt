@@ -8,7 +8,7 @@
         <h4 class="modal-title">Meld een probleem.</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" method="POST" action="">
+        <form class="form-horizontal" method="POST" action="{{ base_url('feedback/insert') }}">
 
           <div class="form-group">
             <label class="col-sm-3 control-label">
@@ -16,7 +16,7 @@
             </label>
 
             <div class="col-sm-9">
-              <input class="form-control" name="" placeholder="Email adres" />
+              <input class="form-control" name="email" placeholder="Email adres" />
             </div>
           </div>
 
@@ -26,7 +26,7 @@
             </label>
 
             <div class="col-sm-9">
-              <input class="form-control" name="" placeholder="Uw naam" />
+              <input class="form-control" name="heading" placeholder="Ticket titel" />
             </div>
           </div>
 
@@ -36,7 +36,7 @@
             </label>
 
             <div class="col-sm-9">
-              <select class="form-control" name="">
+              <select class="form-control" name="category_id">
                 <option value="">-- Selecteer categorie --</option>
 
                 @foreach(Labels::all() as $label)
@@ -52,7 +52,7 @@
             </label>
 
             <div class="col-sm-9">
-              <textarea name="" rows="7" class="form-control" placeholder="Probleem beschrijving"></textarea>
+              <textarea name="description" rows="7" class="form-control" placeholder="Probleem beschrijving"></textarea>
             </div>
           </div>
 

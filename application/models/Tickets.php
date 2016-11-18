@@ -18,7 +18,21 @@ class Tickets extends Eloquent
      *
      * @var string
      */
-    protected $table = 'ci_sessions';
+    protected $table = 'tickets';
+
+    /**
+     * Mass-assign fields. 
+     * 
+     * @var array 
+     */ 
+    protected $fillable = ['email', 'description', 'category_id', 'heading'];
+
+    /**
+     * Disable timestamps.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * Get the platform information through a relation.

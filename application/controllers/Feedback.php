@@ -32,18 +32,43 @@ class Feedback extends CI_Controller
      */
     public function insert()
     {
+        $this->form_validation->set_rules('email', 'Email', 'trim|required');
+        $this->form_validation->set_rules('description', 'Description', 'trim|required');
+        $this->form_validation->set_rules('category_id', 'Category', 'trim|required');
+        $this->form_validation->set_rules('heading', 'Heading', 'trim|required'); 
+
         if ($this->form_validation->run() === true) {
             // Validation passes
+
+            // Set the inputs.
+            $input['email']       = $this->input->post('email');
+            $input['description'] = $this->input->post('description'); 
+            $input['category_id'] = $this->input->post('category_id');
+            $input['heading']     = $this->input->post('heading');
+
+            // Insert and set flash error message. 
+            if (Tickets::create($input)) {
+                $alert   = 'alert alert-success'; 
+                $message = 'uw ticket is aangemaakt in het systeem. Bedankt voor het melden.';
+            }
         } else {
-            // Validation fails.
+            // Validation fails            
+
+            // Set the flash session data. 
+            $alert   = 'alert alert-danger';
+            $message = 'Wij konden u ticket niet registreren in het systeem.';
         }
 
-        redirect($this->agent->refferer(), 'back');
+        // Set flash message based on form validation. 
+        $this->session->set_flashdata('class', $alert);
+        $this->session->set_flashdata('message', $message);
+
+        redirect($_SERVER['HTTP_REFERER'], 'back');
     }
 
     public function show()
     {
-
+        $this->blade->render('', $data);
     }
 
     /**
