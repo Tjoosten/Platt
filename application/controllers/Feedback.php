@@ -196,8 +196,8 @@ class Feedback extends CI_Controller
         $id = $this->uri->segment(3);
 
         if (Tickets::destroy($id)) {
-            $this->session->set_flashdata('class', '');
-            $this->session->set_flashdata('message', '');
+            $this->session->set_flashdata('class', 'alert alert-info');
+            $this->session->set_flashdata('message', 'The ticket has been deleted.');
         }
 
         redirect($_SERVER['HTTP_REFERER']);
