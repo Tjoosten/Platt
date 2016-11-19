@@ -51,35 +51,41 @@
 				    			<div class="col-sm-12">
 				    				<div class="panel panel-default">
 					    				<div class="panel-body">
-					    					<table class="table table-condensed table-hover">
-					    						<thead>
-					    							<tr>
-					    								<th>#</th>
-					    								<th>Categorie:</th>
-					    								<th>Aangemaakt door:</th>
-					    								<th>Beschrijving</th>
-					    								<th></th> {{-- Functions --}}
-					    							</tr>	
-					    						</thead>
-					    						<tbody>
-					    							@foreach ($tickets as $ticket)
-					    								<tr>
-					    									<td><code>#{{ $ticket->id }}</code></td>
-					    									<td><span class="label label-info">{{ $ticket->labels->name }}</span></td>
-					    									<td>{{ $ticket->email }}</td>
-					    									<td> {{ substr($ticket->description, 0, 25) }}...</td>
+					    					@if (count($tickets) == 0)
+					    						<div class="alert alert-info">
+					    							Er zijn geen tickets gevonden in het systeem. 
+					    						</div>
+					    					@else 
+					    						<table class="table table-condensed table-hover">
+						    						<thead>
+						    							<tr>
+						    								<th>#</th>
+						    								<th>Categorie:</th>
+						    								<th>Aangemaakt door:</th>
+						    								<th>Beschrijving</th>
+						    								<th></th> {{-- Functions --}}
+						    							</tr>	
+						    						</thead>
+						    						<tbody>
+						    							@foreach ($tickets as $ticket)
+						    								<tr>
+						    									<td><code>#{{ $ticket->id }}</code></td>
+						    									<td><span class="label label-info">{{ $ticket->labels->name }}</span></td>
+						    									<td>{{ $ticket->email }}</td>
+						    									<td> {{ substr($ticket->description, 0, 25) }}...</td>
 
-					    									{{-- Functions --}}
-					    										<td>
-					    											<a href="" class="label label-primary">Info</a>
-					    											<a href="{{ base_url('feedback/githubHook/' . $ticket->id) }}" class="label label-info">Publish</a>
-					    											<a href="" class="label label-danger">Delete</a>
-					    										</td>
-					    									{{-- /Functions--}}
-					    								</tr>
-					    							@endforeach
-					    						</tbody>
-					    					</table>
+						    									{{-- Functions --}}
+						    										<td>
+						    											<a href="" class="label label-primary">Info</a>
+						    											<a href="{{ base_url('feedback/githubHook/' . $ticket->id) }}" class="label label-info">Publish</a>
+						    											<a href="" class="label label-danger">Delete</a>
+						    										</td>
+						    									{{-- /Functions--}}
+						    								</tr>
+						    							@endforeach
+						    						</tbody>
+						    					</table>
+					    					@endif
 					    				</div>
 					    			</div>
 
