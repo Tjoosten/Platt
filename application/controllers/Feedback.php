@@ -1,19 +1,32 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+require_once 'vendor/autoload.php';
+
 /**
  * Class Feedback
  */
 class Feedback extends CI_Controller
 {
     /**
+     * Session data collection. 
+     *
+     * @var array
+     */ 
+    public $Session = []; 
+
+    /**
      * Feedback constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper(['url']);
-        $this->load->library(['session', 'blade', 'form_validation']);
+        $this->load->helper(['url', 'text']);
+        $this->load->library(['session', 'pagination', 'blade', 'form_validation']);
         $this->load->model('Tickets', '', true);
+
+        $this->lang->load(['welcome']);
+
+        $this->Session = $this->session->userdata('logged_in');
     }
 
     /**
@@ -21,8 +34,24 @@ class Feedback extends CI_Controller
      */
     public function index()
     {
-        $data['all'] = Tickets::with('labels', 'platform')->get();
-        $this->blade->render('', $data);
+        $config['base_url']    = base_url('/feedback/index/');
+        $config['total_rows']  = count(Tickets::all());
+        $config['per_page']    = 25;
+        $config['uri_segment'] = 3;
+
+        $choice = $config["total_rows"] / $config["per_page"];
+        $config['num_links'] = round($choice);
+
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+        $data['links']   = $this->pagination->create_links();
+        $data['tickets'] = Tickets::with('labels', 'platform')
+            ->skip($page)
+            ->take($config['per_page'])
+            ->get();
+
+        $this->blade->render('tickets/index', $data);
     }
 
     /**
@@ -66,21 +95,111 @@ class Feedback extends CI_Controller
         redirect($_SERVER['HTTP_REFERER'], 'back');
     }
 
+    /**
+     * [METHOD]: See the specific ticket. 
+     *
+     *
+     * @return view.
+     */
     public function show()
     {
-        $this->blade->render('', $data);
+        $id = $this->uri->segment(3);
+
+        $data['ticket'] = Tickets::with('labels', 'application')->find($id);
+        $this->blade->render('tickets/show', $data);
     }
 
     /**
+     * [METHOD]: github hook. To publish tickets to github. 
+     * 
+     * After that the ticket is pushed to github it will be deleted. 
+     *
+     * @return redirect
+     */
+    public function githubHook() 
+    {
+        $ticketId = $this->uri->segment(3); 
+        $ticket   = Tickets::find($ticketId);
+
+        // The github hook setup. 
+        $github   = new Github\Client();
+        $github->authenticate('Tjoosten', '<password>', Github\Client::AUTH_HTTP_PASSWORD);
+
+        // Start pushing the issues.
+        $creation = $github->api('issue')->create('Tjoosten', 'Platt', [
+            'title' => $ticket->heading, 
+            'body'  => $ticket->description
+        ]);
+
+        // Set flash session and redirect. 
+        if ($creation) {
+            $ticket->delete();
+
+            $this->session->set_flashdata('class', 'alert alert-success');
+            $this->session->set_flashdata('message', 'The issue has been deleted. Follow up wil happen on GitHub.');
+        } else 
+
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    /**
+     * [METHOD]: Search for a ticket. 
+     * 
+     * @return mixed
+     */
+    public function search() 
+    {
+        $this->form_validation->set_rules('term', 'Search term', 'trim|required');
+
+        if ($this->form_validation->run() === false) {
+            // Validation fails. 
+
+            // Set error flash message
+            $this->session->set_flashdata('class', 'alert alert-danger'); 
+            $this->session->set_flashdata('message', 'Wij konden uw zoekopdracht niet verwerken');
+
+            // Redirect
+            redirect('feedback');
+        } 
+
+        // If the validation doesn't fail,
+        // it goes further with the controller. 
+
+        $term  = $this->input->post('term');
+        $query = Tickets::with('labels', 'platform')->where('description', 'LIKE', "%$term%");
+
+        $config['base_url']    = base_url('/feedback/index/'); 
+        $config['total_rows']  = count($query->get()); 
+        $config['per_page']    = 25; 
+        $config['uri_segment'] = 3; 
+
+        $choice = $config['total_rows'] / $config['per_page'];
+        $config['num_links']  = round($choice);
+
+        $this->pagination->initialize($config); 
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+        $data['links']   = $this->pagination->create_links();
+        $data['tickets'] = $query->skip($page)->take($config['per_page'])->get();
+
+        $this->blade->render('tickets/index', $data);
+    }
+
+
+    /**
      * [METHOD]: Destroy a feedback out off the system.
+     *
+     * @return redirect
      */
     public function destroy()
     {
         $id = $this->uri->segment(3);
 
         if (Tickets::destroy($id)) {
-            $this->session->set_flashdata('', '');
-            $this->session->set_flashdata('', '');
+            $this->session->set_flashdata('class', 'alert alert-info');
+            $this->session->set_flashdata('message', 'The ticket has been deleted.');
         }
+
+        redirect($_SERVER['HTTP_REFERER']);
     }
 }
