@@ -1,5 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+require_once 'vendor/autoload.php';
+
 /**
  * Class Feedback
  */
@@ -109,12 +111,35 @@ class Feedback extends CI_Controller
 
     /**
      * [METHOD]: github hook. To publish tickets to github. 
+     * 
+     * After that the ticket is pushed to github it will be deleted. 
      *
      * @return redirect
      */
     public function githubHook() 
     {
-        // 
+        $ticketId = $this->uri->segment(3); 
+        $ticket   = Tickets::find($ticketId);
+
+        // The github hook setup. 
+        $github   = new Github\Client();
+        $github->authenticate('Tjoosten', '<password>', Github\Client::AUTH_HTTP_PASSWORD);
+
+        // Start pushing the issues.
+        $creation = $github->api('issue')->create('Tjoosten', 'Platt', [
+            'title' => $ticket->heading, 
+            'body'  => $ticket->description
+        ]);
+
+        // Set flash session and redirect. 
+        if ($creation) {
+            $ticket->delete();
+
+            $this->session->set_flashdata('class', 'alert alert-success');
+            $this->session->set_flashdata('message', 'The issue has been deleted. Follow up wil happen on GitHub.');
+        } else 
+
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     /**

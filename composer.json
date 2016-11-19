@@ -12,7 +12,9 @@
 	},
 	"require": {
 		"illuminate/database": "5.0.28",
-		"illuminate/events": "5.0.28"
+		"illuminate/events": "5.0.28",
+		"knplabs/github-api": "^1.7",
+		"php-http/guzzle6-adapter": "^1.1"
 	},
 	"autoload": {
 		"classmap": [

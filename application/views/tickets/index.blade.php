@@ -72,7 +72,7 @@
 					    									{{-- Functions --}}
 					    										<td>
 					    											<a href="" class="label label-primary">Info</a>
-					    											<a href="" class="label label-info">Publish</a>
+					    											<a href="{{ base_url('feedback/githubHook/' . $ticket->id) }}" class="label label-info">Publish</a>
 					    											<a href="" class="label label-danger">Delete</a>
 					    										</td>
 					    									{{-- /Functions--}}
