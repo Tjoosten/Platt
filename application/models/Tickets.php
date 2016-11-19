@@ -47,6 +47,6 @@ class Tickets extends Eloquent
      */
     public function labels()
     {
-        return $this->belongsTo('Labels');
+        return $this->belongsTo('Labels', 'category_id');
     }
 }

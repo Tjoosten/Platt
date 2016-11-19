@@ -27,7 +27,7 @@
 				    			<div class="col-sm-12">
 				    				{{-- Search form --}}
 					    				<div class="panel-functions pull-left">
-					    					<form class="form-inline" method="POST" action="">
+					    					<form class="form-inline" method="POST" action="{{ base_url('feedback/search') }}">
 					    						<input type="text" class="form-control" name="term" placeholder="Uw zoekterm" />
 
 					    						<button type="submit" class="btn btn-danger">
@@ -53,13 +53,37 @@
 					    						<thead>
 					    							<tr>
 					    								<th>#</th>
-					    								<th>Email:</th>
-					    								<th>Naam:</th>
+					    								<th>Categorie:</th>
+					    								<th>Aangemaakt door:</th>
+					    								<th>Beschrijving</th>
+					    								<th></th> {{-- Functions --}}
 					    							</tr>	
 					    						</thead>
+					    						<tbody>
+					    							@foreach ($tickets as $ticket)
+					    								<tr>
+					    									<td><code>#{{ $ticket->id }}</code></td>
+					    									<td><span class="label label-info">{{ $ticket->labels->name }}</span></td>
+					    									<td>{{ $ticket->email }}</td>
+					    									<td> {{ substr($ticket->description, 0, 25) }}...</td>
+
+					    									{{-- Functions --}}
+					    										<td>
+					    											<a href="" class="label label-primary">Info</a>
+					    											<a href="" class="label label-info">Publish</a>
+					    											<a href="" class="label label-danger">Delete</a>
+					    										</td>
+					    									{{-- /Functions--}}
+					    								</tr>
+					    							@endforeach
+					    						</tbody>
 					    					</table>
 					    				</div>
 					    			</div>
+
+					    			{{-- Ticket pagination --}}
+					    				{{ $links }}
+					    			{{--  /Ticket pagination --}}
 				    			</div>
 				    		{{-- /Tickets overview --}}
 				    	</div>
@@ -68,13 +92,29 @@
 
 				{{-- Labels --}}
 				    <div role="tabpanel" class="tab-pane fade in" id="tab_2">
-				    	Labels
+				    	<div class="row">
+				    		{{-- Ticket functions  --}}
+				    			<div class="col-sm-12">
+					    			<div class="panel-functions pull-right">
+					    				<a href="" class="btn btn-success">Label toevoegen</a>
+					    			</div>
+					    		</div>
+					    	{{--  /Ticket functions --}}
+				    	</div>
 				    </div>
 				{{--  /Labels --}}
 
 				{{-- Applications --}}
 				    <div role="tabpanel" class="tab-pane fade in" id="tab_3">
-				    	Applicaties
+				    	<div class="row">
+				    		{{-- Applicaton functions --}}
+					    		<div class="col-sm-12">
+					    			<div class="panel-functions pull-right">
+						    			<a href="" class="btn btn-success">Applicatie toevoegen</a>
+						    		</div>
+					    		</div>
+					    	{{-- /Application functions --}}
+				    	</div>
 				    </div>
 				{{-- /Applications --}}
 			</div>
@@ -83,5 +123,7 @@
 	
 	{{--  Includes --}}
 		@include('tickets/insert')
+		@include('applications/insert')
+		@include('labels/insert')
 	{{--  /Includes --}}
 @endsection

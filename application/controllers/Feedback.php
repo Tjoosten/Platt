@@ -18,9 +18,11 @@ class Feedback extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper(['url']);
-        $this->load->library(['session', 'blade', 'form_validation']);
+        $this->load->helper(['url', 'text']);
+        $this->load->library(['session', 'pagination', 'blade', 'form_validation']);
         $this->load->model('Tickets', '', true);
+
+        $this->lang->load(['welcome']);
 
         $this->Session = $this->session->userdata('logged_in');
     }
@@ -30,7 +32,23 @@ class Feedback extends CI_Controller
      */
     public function index()
     {
-        $data['tickets'] = Tickets::with('labels', 'platform')->get();
+        $config['base_url']    = base_url('/feedback/index/');
+        $config['total_rows']  = count(Tickets::all());
+        $config['per_page']    = 25;
+        $config['uri_segment'] = 3;
+
+        $choice = $config["total_rows"] / $config["per_page"];
+        $config['num_links'] = round($choice);
+
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+        $data['links']   = $this->pagination->create_links();
+        $data['tickets'] = Tickets::with('labels', 'platform')
+            ->skip($page)
+            ->take($config['per_page'])
+            ->get();
+
         $this->blade->render('tickets/index', $data);
     }
 
@@ -96,7 +114,50 @@ class Feedback extends CI_Controller
      */
     public function githubHook() 
     {
+        // 
+    }
 
+    /**
+     * [METHOD]: Search for a ticket. 
+     * 
+     * @return mixed
+     */
+    public function search() 
+    {
+        $this->form_validation->set_rules('term', 'Search term', 'trim|required');
+
+        if ($this->form_validation->run() === false) {
+            // Validation fails. 
+
+            // Set error flash message
+            $this->session->set_flashdata('class', 'alert alert-danger'); 
+            $this->session->set_flashdata('message', 'Wij konden uw zoekopdracht niet verwerken');
+
+            // Redirect
+            redirect('feedback');
+        } 
+
+        // If the validation doesn't fail,
+        // it goes further with the controller. 
+
+        $term  = $this->input->post('term');
+        $query = Tickets::with('labels', 'platform')->where('description', 'LIKE', "%$term%");
+
+        $config['base_url']    = base_url('/feedback/index/'); 
+        $config['total_rows']  = count($query->get()); 
+        $config['per_page']    = 25; 
+        $config['uri_segment'] = 3; 
+
+        $choice = $config['total_rows'] / $config['per_page'];
+        $config['num_links']  = round($choice);
+
+        $this->pagination->initialize($config); 
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+        $data['links']   = $this->pagination->create_links();
+        $data['tickets'] = $query->skip($page)->take($config['per_page'])->get();
+
+        $this->blade->render('tickets/index', $data);
     }
 
 
