@@ -104,7 +104,7 @@
 				    		{{-- Ticket functions  --}}
 				    			<div class="col-sm-12">
 					    			<div class="panel-functions pull-right">
-					    				<a href="" class="btn btn-success">Label toevoegen</a>
+					    				<a href="" data-toggle="modal" data-target="#newLabel" class="btn btn-success">Label toevoegen</a>
 					    			</div>
 					    		</div>
 					    	{{--  /Ticket functions --}}
