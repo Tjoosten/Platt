@@ -3,6 +3,8 @@
 @section('content')
 	@if (isset($_SESSION['class']) && isset($_SESSION['message'])) 
 		<div class="{{ $_SESSION['class'] }}">
+			{{ $_SESSION['message'] }}
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		</div>
 	@endif
 
