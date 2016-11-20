@@ -105,7 +105,7 @@ class Feedback extends CI_Controller
     {
         $id = $this->uri->segment(3);
 
-        $data['ticket'] = Tickets::with('labels', 'application')->find($id);
+        $data['ticket'] = Tickets::with('labels', 'platform')->find($id);
         $this->blade->render('tickets/show', $data);
     }
 
@@ -118,6 +118,9 @@ class Feedback extends CI_Controller
      */
     public function githubHook() 
     {
+        // TODO: Migrate the assigned user in the system. 
+        // TODO: Migrate the labels to github also.
+
         $ticketId = $this->uri->segment(3); 
         $ticket   = Tickets::find($ticketId);
 
