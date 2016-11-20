@@ -8,6 +8,7 @@
 /CONDUCT.md
 /database.sql
 /composer.lock
+/README.md
 
 # Set the default behavior, in case people don't have core.autocrlf set.
 * text=auto
