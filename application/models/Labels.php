@@ -14,7 +14,7 @@ class Labels extends Eloquent
 	 *
 	 * @var array
 	 */ 
-	protected $fillable = ['name', 'user_id'];
+	protected $fillable = ['name', 'user_id', 'description'];
 
 	/**
 	 * Creator relationship in the database. 
